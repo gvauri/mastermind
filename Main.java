@@ -1,13 +1,12 @@
-import java.util.Random;
 import java.util.Scanner;
 
 
 public class Main {
     public static void main(String[] args) {
 
-            int numberOne= 0;
-            int numberTwo= 0;
-            int numberThree= 0;
+        int numberOne = 0;
+        int numberTwo = 0;
+        int numberThree = 0;
 
         System.out.println("   ▄▄▄▄███▄▄▄▄      ▄████████    ▄████████     ███        ▄████████    ▄████████   ▄▄▄▄███▄▄▄▄    ▄█  ███▄▄▄▄   ████████▄  \n" +
                 " ▄██▀▀▀███▀▀▀██▄   ███    ███   ███    ███ ▀█████████▄   ███    ███   ███    ███ ▄██▀▀▀███▀▀▀██▄ ███  ███▀▀▀██▄ ███   ▀███ \n" +
@@ -19,7 +18,7 @@ public class Main {
                 "  ▀█   ███   █▀    ███    █▀   ▄████████▀     ▄████▀     ██████████   ███    ███  ▀█   ███   █▀  █▀    ▀█   █▀  ████████▀  \n" +
                 "                                                                      ███    ███                                           ");
         System.out.println("Welcome to Mastermind");
-        String[] allColours = {"blue", "red", "orange", "yellow", "green", "black", "white", "grey"};
+        String[] allColoursSmall = {"blue", "red", "orange", "yellow", "green", "black", "white", "grey"};
         String[] selectedColours = new String[4];
         do {
             Scanner scanner = new Scanner(System.in);
@@ -27,7 +26,7 @@ public class Main {
                 int min = 0;
                 int max = 7;
                 int randomNumber = (int) Math.floor(Math.random() * (max - min + 1) + min);
-                selectedColours[i] = allColours[randomNumber];
+                selectedColours[i] = allColoursSmall[randomNumber];
             }
             System.out.println("You can guess the colours like this:");
             System.out.println("blue");
@@ -42,70 +41,46 @@ public class Main {
                 int colourCorrectPlace = 0;
                 System.out.println("Now you can guess the colours:");
                 System.out.println("You have " + j + " tries left.");
-                String firstColour = scanner.nextLine();
-                String secondColour = scanner.nextLine();
-                String thirdColour = scanner.nextLine();
-                String fourthColour = scanner.nextLine();
+                String firstColour = scanner.nextLine().toLowerCase();
+                String secondColour = scanner.nextLine().toLowerCase();
+                String thirdColour = scanner.nextLine().toLowerCase();
+                String fourthColour = scanner.nextLine().toLowerCase();
                 String[] inputColours = {firstColour, secondColour, thirdColour, fourthColour};
-
                 for (int i = 0; i < 4; i++) {
                     if (i == 0) {
-                        numberOne= 1;
-                        numberTwo= 2;
-                        numberThree= 3;
-                    } else if (i == 1){
-                        numberOne= 1;
-                        numberTwo= 2;
-                        numberThree= -1;
-                    }else if (i == 2){
-                        numberOne= 1;
-                        numberTwo= -2;
-                        numberThree= -1;
-                    }else if (i == 3){
-                        numberOne= -3;
-                        numberTwo= -2;
-                        numberThree= -1;
+                        numberOne = 1;
+                        numberTwo = 2;
+                        numberThree = 3;
+                    } else if (i == 1) {
+                        numberOne = 1;
+                        numberTwo = 2;
+                        numberThree = -1;
+                    } else if (i == 2) {
+                        numberOne = 1;
+                        numberTwo = -2;
+                        numberThree = -1;
+                    } else {
+                        numberOne = -3;
+                        numberTwo = -2;
+                        numberThree = -1;
                     }
+
                     if (selectedColours[i].equals(inputColours[i])) {
                         colourCorrectPlace = colourCorrectPlace + 1;
-                    } else if (selectedColours[i].equals(inputColours[i+numberOne]) ||
-                            selectedColours[i].equals(inputColours[i+numberTwo]) ||
-                            selectedColours[i].equals(inputColours[i+numberThree])) {
+                        inputColours[i] = "";
+                    } else if (selectedColours[i].equals(inputColours[i + numberOne])) {
                         colourExists = colourExists + 1;
+                        inputColours[i + numberOne] = "";
+                    } else if (selectedColours[i].equals(inputColours[i + numberTwo])) {
+                        colourExists = colourExists + 1;
+                        inputColours[i + numberTwo] = "";
+                    } else if (selectedColours[i].equals(inputColours[i + numberThree])) {
+                        colourExists = colourExists + 1;
+                        inputColours[i + numberThree] = "";
                     }
 
                 }
 
-                /*if (selectedColours[0].equals(firstColour)) {
-                    colourCorrectPlace += 1;
-                } else if (selectedColours[0].equals(secondColour) ||
-                        selectedColours[0].equals(thirdColour) ||
-                        selectedColours[0].equals(fourthColour)) {
-                    colourExists = colourExists + 1;
-                }
-
-                if (selectedColours[1].equals(secondColour)) {
-                    colourCorrectPlace = colourCorrectPlace + 1;
-                } else if (selectedColours[1].equals(firstColour) ||
-                        selectedColours[1].equals(thirdColour) ||
-                        selectedColours[1].equals(fourthColour)) {
-                    colourExists = colourExists + 1;
-                }
-                if (selectedColours[2].equals(thirdColour)) {
-                    colourCorrectPlace = colourCorrectPlace + 1;
-                } else if (selectedColours[2].equals(secondColour) ||
-                        selectedColours[2].equals(firstColour) ||
-                        selectedColours[2].equals(fourthColour)) {
-                    colourExists = colourExists + 1;
-                }
-                if (selectedColours[3].equals(fourthColour)) {
-                    colourCorrectPlace = colourCorrectPlace + 1;
-                } else if (selectedColours[3].equals(secondColour) ||
-                        selectedColours[3].equals(thirdColour) ||
-                        selectedColours[3].equals(firstColour)) {
-                    colourExists = colourExists + 1;
-                }
-*/
                 if (colourExists == 0 ||
                         colourExists == 1) {
                     System.out.println("You have " + colourExists + " colour right but in the wrong place.");
@@ -130,14 +105,25 @@ public class Main {
                     System.out.println("You are bad and don't try again.");
                 }
             }
-            System.out.println("Do you want to play again?");
-            System.out.println("Press y for yes or n for no.");
-            String playAgain = scanner.nextLine();
-            if (playAgain.equals("y")) {
-                System.out.println("You're back!");
-            } else {
+
+            boolean ending = true;
+            do {
+                System.out.println("Do you want play again?");
+                System.out.println("Press y for yes or n for no.");
+                String playAgain = scanner.nextLine().toLowerCase();
+                if (playAgain.equals("y")) {
+                    System.out.println("You're back!");
+                    break;
+                } else if (playAgain.equals("n")) {
+                    ending = false;
+                    break;
+                } else {
+                    System.out.println("can you please enter y or n.");
+                }
+            } while (true);
+            if (!ending) {
                 break;
             }
-        }while (true);
+        } while (true);
     }
 }

@@ -33,7 +33,7 @@ public class Main {
             System.out.println("red");
             System.out.println("orange");
             System.out.println("yellow");
-            System.out.println(selectedColours[0] + selectedColours[1] + selectedColours[2] + selectedColours[3]);
+            //System.out.println(selectedColours[0] + selectedColours[1] + selectedColours[2] + selectedColours[3]);
 
             for (int j = 12; j > 0; j--) {
                 System.out.println("The colours you can choose are blue, red, orange, yellow, green, black, white, grey.");
@@ -42,41 +42,13 @@ public class Main {
                 System.out.println("Now you can guess the colours:");
                 System.out.println("You have " + j + " tries left.");
                 String firstColour = scanner.nextLine().toLowerCase();
-                for (int i = 0; i < 8; i++) {
-                    if(!firstColour.equals(allColoursSmall[i])){
-                        System.out.println("Please try again with the correct colours");
-                        j+=1;
-                    }else{
-                        break;
-                    }
-                }
+
                 String secondColour = scanner.nextLine().toLowerCase();
-                for (int i = 0; i < 8; i++) {
-                    if(!secondColour.equals(allColoursSmall[i])){
-                        System.out.println("Please try again with the correct colours");
-                        j+=1;
-                    }else{
-                        break;
-                    }
-                }
+
                 String thirdColour = scanner.nextLine().toLowerCase();
-                for (int i = 0; i < 8; i++) {
-                    if(!thirdColour.equals(allColoursSmall[i])){
-                        System.out.println("Please try again with the correct colours");
-                        j+=1;
-                    }else{
-                        break;
-                    }
-                }
+
                 String fourthColour = scanner.nextLine().toLowerCase();
-                for (int i = 0; i < 8; i++) {
-                    if(!fourthColour.equals(allColoursSmall[i])){
-                        System.out.println("Please try again with the correct colours");
-                        j+=1;
-                    }else{
-                        break;
-                    }
-                }
+
                 String[] inputColours = {firstColour, secondColour, thirdColour, fourthColour};
                 for (int i = 0; i < 4; i++) {
                     if (i == 0) {
